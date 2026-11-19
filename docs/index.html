@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f4f0">
+  <title>微信视频号下载 Skill · Weixin Channel Download</title>
+  <meta name="description" content="把微信视频号分享链接保存为 MP4，提取 WAV、转写中文口播并导出数据。适用于 WorkBuddy、DeepSeek Harness 和 Codex。">
+  <link rel="canonical" href="https://chans-gh.github.io/Weixin-Channel-Download/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="微信视频号下载 Skill">
+  <meta property="og:description" content="从一条分享链接，到本地视频、音轨、口播稿和数据。">
+  <meta property="og:url" content="https://chans-gh.github.io/Weixin-Channel-Download/">
+  <meta property="og:image" content="https://chans-gh.github.io/Weixin-Channel-Download/assets/coast.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="wordmark" href="#main"><span class="wordmark-icon" aria-hidden="true"><i></i><i></i><i></i></span>微信视频号下载</a>
+      <nav aria-label="页面目录">
+        <a href="#workflow">工作流程</a>
+        <a href="#install">安装</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+      <a class="top-source" href="https://github.com/Chans-gh/Weixin-Channel-Download">GitHub</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="project-name" lang="en">WEIXIN CHANNEL DOWNLOAD</p>
+          <h1 id="hero-title">微信视频号<br><span>下载 <b lang="en">Skill</b></span></h1>
+          <p class="hero-description">把视频号分享链接或本地音视频交给 Agent，按需保存 MP4、提取音轨、转写口播并导出数据。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#install">选择安装包</a>
+            <a class="button button-outline" href="https://github.com/Chans-gh/Weixin-Channel-Download/releases/tag/v0.2.0">查看 v0.2.0</a>
+          </div>
+          <p class="hosts" aria-label="支持的宿主">WorkBuddy <span>·</span> DeepSeek Harness <span>·</span> Codex</p>
+        </div>
+
+        <figure class="preview">
+          <figcaption class="preview-head">
+            <span><span class="preview-dot" aria-hidden="true"></span>本地产物预览</span>
+            <span class="preview-meta">示例</span>
+          </figcaption>
+          <div class="preview-picture">
+            <img src="assets/coast.jpg" width="1440" height="960" alt="逆光下，金色浪花拍向黑色岩岸" fetchpriority="high">
+            <span>海岸日落</span>
+          </div>
+          <div class="preview-tabs" role="tablist" aria-label="查看产物示例" hidden>
+            <button type="button" id="tab-mp4" role="tab" aria-selected="true" aria-controls="demo-mp4">MP4</button>
+            <button type="button" id="tab-wav" role="tab" aria-selected="false" aria-controls="demo-wav" tabindex="-1">WAV</button>
+            <button type="button" id="tab-txt" role="tab" aria-selected="false" aria-controls="demo-txt" tabindex="-1">TXT</button>
+            <button type="button" id="tab-data" role="tab" aria-selected="false" aria-controls="demo-data" tabindex="-1">JSON / CSV</button>
+          </div>
+          <div class="preview-output">
+            <div id="demo-mp4" role="tabpanel" aria-labelledby="tab-mp4" tabindex="0"><code>海岸日落.mp4</code><span>保存可用的视频版本</span></div>
+            <div id="demo-wav" role="tabpanel" aria-labelledby="tab-wav" tabindex="0" hidden><code>海岸日落.wav</code><span>48 kHz · 16-bit PCM</span></div>
+            <div id="demo-txt" role="tabpanel" aria-labelledby="tab-txt" tabindex="0" hidden><code>海岸日落_口播.txt</code><span>简体中文 · UTF-8</span></div>
+            <div id="demo-data" role="tabpanel" aria-labelledby="tab-data" tabindex="0" hidden><code>海岸日落.json / .csv</code><span>发布信息和互动字段</span></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>从分享链接到本地文件</h2>
+          <p>给 Agent 一个输入，告诉它需要保存哪些产物。</p>
+        </div>
+        <ol class="flow">
+          <li>
+            <span class="step">01</span>
+            <h3>给出链接或文件</h3>
+            <p>接受一条微信视频号分享链接，也能直接导入本地音视频。</p>
+          </li>
+          <li>
+            <span class="step">02</span>
+            <h3>在元宝完成登录</h3>
+            <p>处理分享链接时，按提示在临时 Chrome 窗口手动登录。导入本地媒体可直接处理。</p>
+          </li>
+          <li>
+            <span class="step">03</span>
+            <h3>按需导出</h3>
+            <p>文件默认保存到 Downloads。口播优先用 Agent 原生音频能力，必要时切换到本地 Whisper。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="install section" id="install">
+      <div class="wrap install-grid">
+        <div class="install-intro">
+          <p class="release-version">GITHUB RELEASE / v0.2.0</p>
+          <h2>选择你的宿主</h2>
+          <p>解压时保留 <code>weixin-channels-download-skill</code> 文件夹。首次使用可让 Agent 在技能目录安装锁定依赖。</p>
+          <a href="https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/SHA256SUMS.txt" class="checksum">查看 SHA-256 校验清单</a>
+        </div>
+        <div class="install-list">
+          <article class="install-row">
+            <div><h3>WorkBuddy</h3><p>打开「技能 → 添加技能 → 上传技能」，选择 ZIP。</p></div>
+            <a class="button download" href="https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/weixin-channel-download-workbuddy-v0.2.0.zip" aria-label="下载 WorkBuddy 安装包">下载 ZIP</a>
+          </article>
+          <article class="install-row">
+            <div><h3>DeepSeek Harness</h3><p>解压到工作区的 <code>.agents/skills/</code>，在技能列表中选择。</p></div>
+            <a class="button download" href="https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/weixin-channel-download-deepseek-harness-v0.2.0.zip" aria-label="下载 DeepSeek Harness 安装包">下载 ZIP</a>
+          </article>
+          <article class="install-row">
+            <div><h3>Codex</h3><p>解压到项目的 <code>.agents/skills/</code> 或 <code>~/.agents/skills/</code>。</p></div>
+            <a class="button download" href="https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/weixin-channel-download-codex-v0.2.0.zip" aria-label="下载 Codex 安装包">下载 ZIP</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="prompt-title">
+      <div class="wrap prompt">
+        <div><h2 id="prompt-title">安装后，给 Agent 一句话</h2><p>复制到对话，再附上你的分享链接。</p></div>
+        <div class="prompt-box">
+          <p id="prompt-text">用微信视频号下载 Skill 下载我提供的分享链接，保存 MP4，并导出中文口播和采集数据。</p>
+          <button class="button button-outline copy-button" type="button" hidden>复制提示词</button>
+          <span class="sr-only" id="copy-status" role="status"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section faq-section">
+      <div class="wrap faq-grid">
+        <div><h2>常见问题</h2><a href="https://github.com/Chans-gh/Weixin-Channel-Download/blob/main/docs/compatibility.md">查看兼容性记录</a></div>
+        <div class="faq-list">
+          <details>
+            <summary>需要准备什么运行环境？</summary>
+            <p>准备 Node.js 24+ 与 npm，并在技能目录运行 <code>npm ci --ignore-scripts</code>。分享链接需要 Google Chrome 与可交互桌面。导入媒体及提取音轨需要 FFmpeg 和 ffprobe。</p>
+          </details>
+          <details>
+            <summary>为什么下载链接时要登录元宝？</summary>
+            <p>Skill 通过元宝解析分享链接。按提示在打开的临时 Chrome 窗口登录后，原进程会自动继续。凭据由浏览器持有。</p>
+          </details>
+          <details>
+            <summary>Agent 无法接收音频时，还能转写吗？</summary>
+            <p>可以切换到本地 Whisper Base q8。首次使用需下载并校验约 80 MB 的模型，缓存就绪后可离线识别。遇到音轨不清晰时，任务可保留并重试。</p>
+          </details>
+          <details>
+            <summary>文件保存在哪里？</summary>
+            <p>默认保存到本机 Downloads，也可以向 Agent 指定输出目录。遇到同名文件时追加序号。发布文案和口播稿单独记录。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div><strong>微信视频号下载 Skill</strong><p>Apache-2.0 开源项目 · Chans-gh</p></div>
+      <div class="footer-links"><a href="https://github.com/Chans-gh/Weixin-Channel-Download">项目源码</a><a href="https://chans-gh.github.io/AI-Coding-Video/">AI Coding Video</a><a href="https://www.pexels.com/photo/waves-crashing-on-rocky-shore-at-sunset-35409308/">摄影 Alexander Popadin</a></div>
+    </div>
+  </footer>
+</body>
+</html>

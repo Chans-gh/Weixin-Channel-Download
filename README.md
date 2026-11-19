@@ -2,6 +2,8 @@
 
 把一条微信视频号分享链接下载为本地 MP4，也可以导入已有音视频，提取 WAV、转写简体中文口播，或导出 JSON 和 CSV。支持 **WorkBuddy、DeepSeek Harness 和 Codex**。
 
+[项目介绍与安装入口](https://chans-gh.github.io/Weixin-Channel-Download/) · [最新发行版](https://github.com/Chans-gh/Weixin-Channel-Download/releases/latest)
+
 ## 下载与安装
 
 从 [GitHub Releases](https://github.com/Chans-gh/Weixin-Channel-Download/releases/latest) 下载对应的 ZIP。安装时保留整个 `weixin-channels-download-skill/` 目录，里面的脚本和锁文件会随 Skill 使用。
