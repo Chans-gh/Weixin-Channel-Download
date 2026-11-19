@@ -1,5 +1,7 @@
 # 宿主适配与发行包
 
+[使用指南](usage.md) · [查看发行版](https://github.com/Chans-gh/Weixin-Channel-Download/releases/latest)
+
 三个安装包都来自同一份 `.agents/skills/weixin-channels-download-skill/`。WorkBuddy 包增加中英文介绍、示例、版本和作者。Codex 包增加展示元数据。DeepSeek Harness 使用原生 Agent Skills 目录结构。
 
 每个 ZIP 包含一个名为 `weixin-channels-download-skill` 的根文件夹。运行时依赖根据锁文件安装。FFmpeg、Chrome 和 Whisper 模型由本机环境提供。GitHub Release 提供独立的 SHA-256 校验清单。
@@ -13,7 +15,7 @@
 | Codex | 本机 Codex app-server 从解压目录发现了 Skill，并返回已启用状态与展示元数据 |
 | 共用 CLI | 18 项源码测试通过，覆盖下载夹具、音轨、导入导出与转写切换。真实 MP4 下载及 Whisper 离线识别曾在 macOS 验证 |
 
-记录的宿主检查覆盖导入格式和 Skill 发现。宿主原生语音识别由所选会话的模型和工具决定。当前实测的 Codex + GPT‑6.2 Sol 会话返回音频输入不可用，Skill 在该环境使用本地 Whisper。
+以上记录来自 v0.2.0 的 macOS 验证。Agent 文本回填已通过测试，宿主原生识别效果尚待验收。原生音频能力取决于会话中的模型和工具。此前实测的 Codex + GPT‑6.2 Sol 会话返回音频输入不可用，该会话可用本地 Whisper 继续。
 
 ## 构建
 

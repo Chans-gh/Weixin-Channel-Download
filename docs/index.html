@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f4f0">
   <title>微信视频号下载 Skill · Weixin Channel Download</title>
-  <meta name="description" content="把微信视频号分享链接保存为 MP4，提取 WAV、转写中文口播并导出数据。适用于 WorkBuddy、DeepSeek Harness 和 Codex。">
+  <meta name="description" content="下载微信视频号分享链接或导入本地音视频，按需导出 MP4、WAV、中文口播和 JSON／CSV。适用于 WorkBuddy、DeepSeek Harness 和 Codex。">
   <link rel="canonical" href="https://chans-gh.github.io/Weixin-Channel-Download/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="微信视频号下载 Skill">
@@ -100,7 +100,7 @@
         <div class="install-intro">
           <p class="release-version">GITHUB RELEASE / v0.2.0</p>
           <h2>选择你的宿主</h2>
-          <p>解压时保留 <code>weixin-channels-download-skill</code> 文件夹。首次使用可让 Agent 在技能目录安装锁定依赖。</p>
+          <p>WorkBuddy 直接上传 ZIP。DeepSeek Harness 和 Codex 解压时保留 <code>weixin-channels-download-skill</code> 文件夹。首次使用可让 Agent 安装锁定依赖。</p>
           <a href="https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/SHA256SUMS.txt" class="checksum">查看 SHA-256 校验清单</a>
         </div>
         <div class="install-list">
@@ -133,19 +133,25 @@
 
     <section id="faq" class="section faq-section">
       <div class="wrap faq-grid">
-        <div><h2>常见问题</h2><a href="https://github.com/Chans-gh/Weixin-Channel-Download/blob/main/docs/compatibility.md">查看兼容性记录</a></div>
+        <div>
+          <h2>常见问题</h2>
+          <ul class="faq-links">
+            <li><a href="https://github.com/Chans-gh/Weixin-Channel-Download/blob/main/docs/usage.md">安装与故障排查指南</a></li>
+            <li><a href="https://github.com/Chans-gh/Weixin-Channel-Download/blob/main/docs/compatibility.md">宿主兼容性记录</a></li>
+          </ul>
+        </div>
         <div class="faq-list">
           <details>
             <summary>需要准备什么运行环境？</summary>
-            <p>准备 Node.js 24+ 与 npm，并在技能目录运行 <code>npm ci --ignore-scripts</code>。分享链接需要 Google Chrome 与可交互桌面。导入媒体及提取音轨需要 FFmpeg 和 ffprobe。</p>
+            <p>准备 Node.js 24+ 与 npm，并在技能目录运行 <code>npm ci --ignore-scripts</code>。分享链接需要 Google Chrome、可交互桌面和网络。导入媒体、提取音轨和准备转写还需要 FFmpeg 和 ffprobe。</p>
           </details>
           <details>
             <summary>为什么下载链接时要登录元宝？</summary>
-            <p>Skill 通过元宝解析分享链接。按提示在打开的临时 Chrome 窗口登录后，原进程会自动继续。凭据由浏览器持有。</p>
+            <p>Skill 通过元宝解析分享链接。按提示在临时 Chrome 窗口登录后，原任务会自动继续。默认等候约 3 分钟，超时可重跑。导入本地文件时可直接处理。</p>
           </details>
           <details>
             <summary>Agent 无法接收音频时，还能转写吗？</summary>
-            <p>可以切换到本地 Whisper Base q8。首次使用需下载并校验约 80 MB 的模型，缓存就绪后可离线识别。遇到音轨不清晰时，任务可保留并重试。</p>
+            <p>可以用本地 Whisper Base q8 继续同一任务。首次使用需下载并校验约 80 MB 的模型，缓存后可离线识别。遇到音轨不清晰时，可用同一编号重试或跳过口播。</p>
           </details>
           <details>
             <summary>文件保存在哪里？</summary>

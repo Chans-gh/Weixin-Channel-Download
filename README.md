@@ -1,40 +1,45 @@
 # 微信视频号下载 Skill
 
-把一条微信视频号分享链接下载为本地 MP4，也可以导入已有音视频，提取 WAV、转写简体中文口播，或导出 JSON 和 CSV。支持 **WorkBuddy、DeepSeek Harness 和 Codex**。
+把一条微信视频号分享链接保存为 MP4，再按需提取 WAV、转写简体中文口播、导出 JSON 和 CSV。已有音视频文件也可以直接导入处理。适用于 **WorkBuddy、DeepSeek Harness 和 Codex**。
 
-[项目介绍与安装入口](https://chans-gh.github.io/Weixin-Channel-Download/) · [最新发行版](https://github.com/Chans-gh/Weixin-Channel-Download/releases/latest)
+[项目主页](https://chans-gh.github.io/Weixin-Channel-Download/) · [下载最新版本](https://github.com/Chans-gh/Weixin-Channel-Download/releases/latest) · [使用指南](docs/usage.md) · [反馈问题](https://github.com/Chans-gh/Weixin-Channel-Download/issues/new)
 
 ## 下载与安装
 
-从 [GitHub Releases](https://github.com/Chans-gh/Weixin-Channel-Download/releases/latest) 下载对应的 ZIP。安装时保留整个 `weixin-channels-download-skill/` 目录，里面的脚本和锁文件会随 Skill 使用。
-
-| 宿主 | 安装包 | 安装方法 |
+| 宿主 | v0.2.0 安装包 | 安装方法 |
 | --- | --- | --- |
-| WorkBuddy | `weixin-channel-download-workbuddy-*.zip` | 打开「技能 → 添加技能 → 上传技能」，直接上传 ZIP |
-| DeepSeek Harness | `weixin-channel-download-deepseek-harness-*.zip` | 解压到工作区的 `.agents/skills/`，打开该工作区，在技能列表选择 `weixin-channels-download-skill` |
-| Codex | `weixin-channel-download-codex-*.zip` | 解压到项目的 `.agents/skills/` 或用户的 `~/.agents/skills/`，使用 `$weixin-channels-download-skill` 调用 |
+| WorkBuddy | [下载 ZIP](https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/weixin-channel-download-workbuddy-v0.2.0.zip) | 打开「技能 → 添加技能 → 上传技能」，选择 ZIP |
+| DeepSeek Harness | [下载 ZIP](https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/weixin-channel-download-deepseek-harness-v0.2.0.zip) | 解压到工作区的 `.agents/skills/`，在技能列表选择 `weixin-channels-download-skill` |
+| Codex | [下载 ZIP](https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/weixin-channel-download-codex-v0.2.0.zip) | 解压到项目或用户的 `.agents/skills/`，用 `$weixin-channels-download-skill` 调用 |
 
-DeepSeek Harness 和 Codex 也可以直接打开本仓库作为工作区，使用仓库内的 `.agents/skills/`。首次调用可让宿主 Agent 在技能目录执行 `npm ci --ignore-scripts`，也可以在终端安装。宿主需要能运行本机命令和访问工作区及输出目录。
+需要 **Node.js 24+ 和 npm**。首次使用，在 `SKILL.md` 所在目录运行 `npm ci --ignore-scripts`，也可让 Agent 执行。处理分享链接需要本机 **Google Chrome**、可交互桌面和网络。导入本地媒体、提取音轨或准备转写还需要 **FFmpeg 和 ffprobe**。目录示例、依赖和 [SHA-256 校验清单](https://github.com/Chans-gh/Weixin-Channel-Download/releases/download/v0.2.0/SHA256SUMS.txt) 的用法见[使用指南](docs/usage.md)。
 
-## 使用示例
+## 第一次使用
 
-- 「用微信视频号下载 Skill 下载这条分享链接，保存 MP4。」
-- 「导入我提供的本地视频，提取 WAV，并把中文口播导出为 TXT。」
-- 「保存视频号的发布文案和互动数据，导出 JSON 和 CSV。」
+在宿主里调用技能，附上一条从微信视频号复制的分享链接。可以先试这句。
 
-链接任务会打开一个临时 Chrome 窗口。收到提示后在该窗口手动登录腾讯元宝，当前进程会自动续跑。输出默认保存到系统用户的 `Downloads`，可指定其他目录，重名会追加序号。
+> 用微信视频号下载 Skill 下载我提供的分享链接，保存 MP4。完成后告诉我文件路径。
 
-## 运行环境
+收到登录提醒后，在弹出的临时 Chrome 窗口手动登录腾讯元宝。登录成功后，原任务会自动继续。文件默认保存到本机 `Downloads`，也可指定目录，重名会追加序号。
 
-- **Node.js 24+** 与 npm 用于运行脚本和安装锁定依赖。
-- **Google Chrome** 和可交互桌面用于打开分享链接、登录元宝并解析视频。
-- **FFmpeg 和 ffprobe** 用于本地媒体导入、音轨提取和转写准备。可通过系统 PATH 提供，也可放到技能目录的 `.runtime/bin/`。
-- **转写**优先使用宿主会话中已确认可用的原生音频输入。能力不可用或识别失败时，用同一任务切到 Whisper Base q8。首次需下载并校验约 80 MB 的模型，缓存完成后可离线识别；音频由本机 Whisper 处理。脚本返回实际使用的转写路径。
+| 想做什么 | 给 Agent 的指令示例 |
+| --- | --- |
+| 导出音轨和口播 | 导入我提供的本地视频，提取 WAV，并把中文口播保存为 TXT。 |
+| 只采集发布数据 | 导出这条视频号分享链接的发布文案和平台返回的互动数据，保存为 JSON 和 CSV。 |
+| 导出全部产物 | 保存这条分享链接的 MP4、WAV、中文口播 TXT 和 JSON/CSV。 |
 
-## 数据与验证
+## 转写与数据
 
-采集文件区分发布文案和转写口播。未返回的互动字段留空。转写和平台数据依赖实际音轨、模型和页面响应。
+- 请求口播时，优先使用当前会话中已确认可用的 Agent 音频能力。会话无法接收音频或识别失败，便用本地 **Whisper Base q8** 继续同一任务。Whisper 首次需联网下载并校验约 80 MB 的模型，缓存后可离线识别。
+- JSON 和 CSV 分别记录发布文案与语音转写。互动数据以平台返回值为准，缺失字段在 JSON 为 `null`、在 CSV 为空。导入本地文件时可导出时长、分辨率和编解码器等媒体信息。
+- 每次处理一条分享链接或一个本地文件。公开分享预览能否返回视频或互动数据取决于平台及该链接。链接不可用时，可继续用手头已有的音视频文件。
 
-项目已在 macOS 验证真实元宝登录后下载 MP4，并用合成中文语音验证本地 Whisper、TXT 和 JSON/CSV。兼容性和发行包测试范围见 [发行说明](docs/compatibility.md)。命令、字段和开发测试见 [CLI 说明](.agents/skills/weixin-channels-download-skill/README.md)。
+## 验证与维护
 
-本项目与微信、腾讯、DeepSeek 或 OpenAI 没有官方从属关系。请处理你有权使用或下载的内容。代码采用 [Apache-2.0](LICENSE)，上游来源见 [NOTICE](.agents/skills/weixin-channels-download-skill/NOTICE.md)。
+在 macOS 已验证真实元宝登录后自动续跑并保存 MP4，以及用本地 Whisper 离线转写合成中文语音。Codex 和 DeepSeek Harness 已验证 Skill 发现。WorkBuddy 已检查上传入口和安装包结构，客户端导入尚未验证。详细范围见[宿主兼容性与构建](docs/compatibility.md)。
+
+- [使用指南](docs/usage.md)涵盖安装、输出、登录和转写排查。
+- [CLI 与开发测试](.agents/skills/weixin-channels-download-skill/README.md)提供完整参数、数据字段和验证命令。
+- [问题反馈](https://github.com/Chans-gh/Weixin-Channel-Download/issues/new)请附宿主版本、系统、操作步骤和脱敏后的错误码或提示。
+
+本项目为独立开源工具。请仅处理你有权下载或使用的内容。代码采用 [Apache-2.0](LICENSE)，上游来源见 [NOTICE](.agents/skills/weixin-channels-download-skill/NOTICE.md)。
