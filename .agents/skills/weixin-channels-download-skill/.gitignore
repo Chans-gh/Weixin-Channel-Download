@@ -1,0 +1,9 @@
+node_modules/
+.weixin-download-*/
+*.mp4
+!tests/fixtures/sample.mp4
+
+.runtime/
+*.wav
+*.webm
+!tests/fixtures/tone.webm

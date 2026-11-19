@@ -1,0 +1,4 @@
+interface:
+  display_name: "微信视频号下载"
+  short_description: "下载微信视频号 MP4，提取音轨、转写口播并导出数据"
+  default_prompt: "使用 $weixin-channels-download-skill 下载我提供的视频号分享链接。"
